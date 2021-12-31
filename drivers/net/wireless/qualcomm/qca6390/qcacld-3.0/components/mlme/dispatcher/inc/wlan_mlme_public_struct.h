@@ -28,6 +28,9 @@
 #include <wmi_unified_param.h>
 #include <sir_api.h>
 
+#define OWE_TRANSITION_OUI_TYPE "\x50\x6f\x9a\x1c"
+#define OWE_TRANSITION_OUI_SIZE 4
+
 #define CFG_PMKID_MODES_OKC                        (0x1)
 #define CFG_PMKID_MODES_PMKSA_CACHING              (0x2)
 
@@ -1162,8 +1165,8 @@ struct wlan_mlme_chainmask {
  * @sae_connect_retries: sae connect retry bitmask
  */
 struct wlan_mlme_generic {
-	enum band_info band_capability;
-	enum band_info band;
+	uint32_t band_capability;
+	uint32_t band;
 	uint8_t select_5ghz_margin;
 	uint8_t sub_20_chan_width;
 	uint8_t ito_repeat_count;
@@ -2394,7 +2397,7 @@ struct wlan_mlme_cfg {
 	struct wlan_mlme_dot11_mode dot11_mode;
 	struct wlan_mlme_reg reg;
 	struct roam_trigger_score_delta trig_score_delta[NUM_OF_ROAM_TRIGGERS];
-	struct roam_trigger_min_rssi trig_min_rssi[NUM_OF_ROAM_TRIGGERS];
+	struct roam_trigger_min_rssi trig_min_rssi[NUM_OF_ROAM_MIN_RSSI];
 };
 
 enum pkt_origin {
